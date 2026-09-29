@@ -1,0 +1,125 @@
+<Window x:Class="P1Z.Subtitler.Windows.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="p1z.subtitler / settings" Width="600" Height="672"
+        MinWidth="560" MinHeight="644" WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BackgroundBrush}" Foreground="{StaticResource TextBrush}"
+        Closing="Window_Closing" PreviewKeyDown="Window_PreviewKeyDown">
+    <Window.Resources>
+        <Style x:Key="FieldLabel" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource UiFont}"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Foreground" Value="{StaticResource MutedBrush}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="FieldHint" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource UiFont}"/>
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="Foreground" Value="#5D6577"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,2,0,0"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="26,22,26,22">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Grid Grid.Row="0" Margin="0,0,0,20">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="&gt;" FontSize="19" VerticalAlignment="Center"
+                           Foreground="{StaticResource AccentBrush}"/>
+                <StackPanel Margin="10,0,0,0">
+                    <TextBlock Text="p1z.subtitler" FontSize="18"
+                               Foreground="{StaticResource TextBrush}"/>
+                    <TextBlock Text="type straight onto your desktop" FontSize="11" Margin="0,3,0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <!-- Fields -->
+        <Border Grid.Row="1" Background="{StaticResource PanelBrush}" SnapsToDevicePixels="True"
+                BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="20,6">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="208"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="GLOBAL HOTKEY" Style="{StaticResource FieldLabel}"/>
+                    <TextBlock Text="opens subtitle mode" Style="{StaticResource FieldHint}"/>
+                </StackPanel>
+                <Button Grid.Column="1" x:Name="HotkeyButton" HorizontalAlignment="Stretch"
+                        Click="HotkeyButton_Click"/>
+
+                <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                    <TextBlock Text="FONT" Style="{StaticResource FieldLabel}"/>
+                    <TextBlock Text="any installed family" Style="{StaticResource FieldHint}"/>
+                </StackPanel>
+                <ComboBox Grid.Row="1" Grid.Column="1" x:Name="FontPicker"/>
+
+                <TextBlock Grid.Row="2" Text="FONT SIZE" Style="{StaticResource FieldLabel}"/>
+                <TextBox Grid.Row="2" Grid.Column="1" x:Name="FontSizeInput"/>
+
+                <StackPanel Grid.Row="3" VerticalAlignment="Center">
+                    <TextBlock Text="BOX OPACITY / %" Style="{StaticResource FieldLabel}"/>
+                    <TextBlock Text="10 - 95" Style="{StaticResource FieldHint}"/>
+                </StackPanel>
+                <TextBox Grid.Row="3" Grid.Column="1" x:Name="OpacityInput"/>
+
+                <StackPanel Grid.Row="4" VerticalAlignment="Center">
+                    <TextBlock Text="MAX SHAKE / PX" Style="{StaticResource FieldLabel}"/>
+                    <TextBlock Text="0 disables the wobble" Style="{StaticResource FieldHint}"/>
+                </StackPanel>
+                <TextBox Grid.Row="4" Grid.Column="1" x:Name="ShakeInput"/>
+
+                <StackPanel Grid.Row="5" VerticalAlignment="Center">
+                    <TextBlock Text="PLACEMENT RANGE / %" Style="{StaticResource FieldLabel}"/>
+                    <TextBlock Text="spread from centre" Style="{StaticResource FieldHint}"/>
+                </StackPanel>
+                <TextBox Grid.Row="5" Grid.Column="1" x:Name="PlacementInput"/>
+
+                <StackPanel Grid.Row="6" VerticalAlignment="Center">
+                    <TextBlock Text="CRT LOOK / %" Style="{StaticResource FieldLabel}"/>
+                    <TextBlock Text="0 disables scanlines and glow" Style="{StaticResource FieldHint}"/>
+                </StackPanel>
+                <TextBox Grid.Row="6" Grid.Column="1" x:Name="CrtInput"/>
+
+                <StackPanel Grid.Row="7" VerticalAlignment="Center">
+                    <TextBlock Text="RAINBOW WORDS" Style="{StaticResource FieldLabel}"/>
+                    <TextBlock Text="comma separated, blank = off" Style="{StaticResource FieldHint}"/>
+                </StackPanel>
+                <TextBox Grid.Row="7" Grid.Column="1" x:Name="RainbowInput"/>
+
+                <TextBlock Grid.Row="8" Text="WINDOWS STARTUP" Style="{StaticResource FieldLabel}"/>
+                <CheckBox Grid.Row="8" Grid.Column="1" x:Name="StartupCheck" Content="launch with windows"/>
+            </Grid>
+        </Border>
+
+        <!-- Footer -->
+        <Grid Grid.Row="2" Margin="0,18,0,0">
+            <TextBlock x:Name="StatusText" Text="changes apply when saved"
+                       VerticalAlignment="Center" TextWrapping="Wrap" Margin="2,0,16,0"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="CANCEL" Width="104" Margin="0,0,10,0" Click="Cancel_Click"/>
+                <Button Content="SAVE" Width="116" Style="{StaticResource AccentButton}" Click="Save_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

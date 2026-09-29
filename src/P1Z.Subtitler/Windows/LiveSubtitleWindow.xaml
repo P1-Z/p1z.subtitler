@@ -1,0 +1,26 @@
+<Window x:Class="P1Z.Subtitler.Windows.LiveSubtitleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:P1Z.Subtitler.Controls"
+        Title="p1z.subtitler live subtitle"
+        WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True"
+        Background="Transparent" ShowActivated="True" ShowInTaskbar="False"
+        Topmost="True" SizeToContent="WidthAndHeight" WindowStartupLocation="Manual"
+        Left="-10000" Top="-10000" Focusable="True"
+        PreviewKeyDown="Window_PreviewKeyDown"
+        PreviewTextInput="Window_PreviewTextInput"
+        SizeChanged="Window_SizeChanged"
+        DpiChanged="Window_DpiChanged">
+    <!-- A semi-transparent black rectangle with text in it. No border and no
+         corners; the only treatment is the CRT surface laid over the whole box,
+         and it measures to nothing so it can never change the box size. -->
+    <Grid x:Name="Root" Opacity="0">
+        <Border x:Name="SubtitleBox" BorderThickness="0" Padding="16,10"
+                SnapsToDevicePixels="True" UseLayoutRounding="True">
+            <controls:JitterTextElement x:Name="SubtitleText" Foreground="White"
+                                        TextFontFamily="Consolas" TextFontSize="30"
+                                        TextLineHeight="36" MaximumJitter="5"/>
+        </Border>
+        <controls:CrtOverlayElement x:Name="CrtSurface"/>
+    </Grid>
+</Window>

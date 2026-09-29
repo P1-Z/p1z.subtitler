@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <AssemblyName>P1Z.Subtitler.Tests</AssemblyName>
+    <RootNamespace>P1Z.Subtitler.Tests</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\P1Z.Subtitler\P1Z.Subtitler.csproj"/>
+  </ItemGroup>
+</Project>
